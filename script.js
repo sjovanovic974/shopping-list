@@ -62,6 +62,21 @@ function clearItems(e) {
   checkUI();
 }
 
+function filterItems(e) {
+  const items = document.querySelectorAll('li');
+  const text = e.target.value.toLowerCase();
+
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+
+    if (itemName.includes(text)) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+  });
+}
+
 function checkUI() {
   const items = document.querySelectorAll('li');
 
@@ -76,8 +91,8 @@ function checkUI() {
 
 // Event Listeners
 itemForm.addEventListener('submit', addItem);
-// itemInput.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', clearItems);
+itemFilter.addEventListener('input', filterItems);
 
 checkUI();
